@@ -83,7 +83,7 @@ const Navbar = () => {
                     className="flex items-center gap-1 text-sm font-medium text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg transition"
                   >
                     <LogOut size={18} />
-                    Logout
+                    Sign in
                   </button>
                 </div>
               ) : (
@@ -98,7 +98,7 @@ const Navbar = () => {
                     href="/signup"
                     className="text-sm bg-orange-500 text-white px-6 py-2.5 rounded-full font-bold hover:bg-orange-600 transition shadow-md shadow-orange-200 active:scale-95"
                   >
-                    Register
+                    Sign up
                   </Link>
                 </>
               )}
