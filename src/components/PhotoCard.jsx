@@ -58,7 +58,7 @@ const PhotoCard = ({ photo }) => {
       </div>
 
       {/* 3. লিঙ্কে ডাবল স্ল্যাশ '//' এর বদলে সঠিক পাথ দিন */}
-      <Link href={`./all-photos/${photo.id}`} className="w-full block">
+      <Link href={`/all-photo/${photo.id}`} className="w-full block">
         <Button className="w-full bg-slate-950 text-white font-bold rounded-xl py-6 hover:bg-orange-600 transition-colors">
           View Details
         </Button>
