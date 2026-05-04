@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Sunglasses",
+    "slug": "sunglasses"
+  },
+  {
+    "id": 2,
+    "name": "Summer Outfits",
+    "slug": "summer-outfits"
+  },
+  {
+    "id": 3,
+    "name": "Skincare",
+    "slug": "skincare"
+  },
+  {
+    "id": 4,
+    "name": "Beach Accessories",
+    "slug": "beach-accessories"
+  },
+  {
+    "id": 5,
+    "name": "Footwear",
+    "slug": "footwear"
+  },
+  {
+    "id": 6,
+    "name": "Hydration Essentials",
+    "slug": "hydration-essentials"
+  }
+]

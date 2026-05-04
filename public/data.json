@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "UV Protection Sunglasses",
+    "brand": "SunShade",
+    "price": 15,
+    "rating": 4.7,
+    "stock": 10,
+    "description": "Stylish UV protection sunglasses perfect for summer outings and beach days.",
+    "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=2080&auto=format&fit=crop",
+    "category": "Accessories"
+  },
+  {
+    "id": 2,
+    "name": "Tropical Floral Shirt",
+    "brand": "IslandVibe",
+    "price": 25,
+    "rating": 4.5,
+    "stock": 15,
+    "description": "Breathable cotton shirt with a vibrant tropical print, ideal for summer parties.",
+    "image": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=2070&auto=format&fit=crop",
+    "category": "Outfits"
+  },
+  {
+    "id": 3,
+    "name": "Sunscreen SPF 50+",
+    "brand": "GlowGuard",
+    "price": 12,
+    "rating": 4.9,
+    "stock": 25,
+    "description": "Non-greasy, water-resistant sunscreen providing maximum protection against UV rays.",
+    "image": "https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1974&auto=format&fit=crop",
+    "category": "Skincare"
+  },
+  {
+    "id": 4,
+    "name": "Foldable Beach Hat",
+    "brand": "SummerCo",
+    "price": 18,
+    "rating": 4.3,
+    "stock": 8,
+    "description": "Wide-brimmed straw hat designed to keep you cool and stylish under the sun.",
+    "image": "https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?q=80&w=2070&auto=format&fit=crop",
+    "category": "Accessories"
+  },
+  {
+    "id": 5,
+    "name": "Cooling Hydration Flask",
+    "brand": "AquaChill",
+    "price": 20,
+    "rating": 4.8,
+    "stock": 20,
+    "description": "Insulated stainless steel bottle that keeps your drinks ice-cold for up to 24 hours.",
+    "image": "https://images.unsplash.com/photo-1602143399364-7962e393b823?q=80&w=1974&auto=format&fit=crop",
+    "category": "Essentials"
+  },
+  {
+    "id": 6,
+    "name": "Quick-Dry Swim Shorts",
+    "brand": "WaveRun",
+    "price": 22,
+    "rating": 4.6,
+    "stock": 12,
+    "description": "Lightweight and comfortable swim shorts with quick-dry technology for beach fun.",
+    "image": "https://images.unsplash.com/photo-1591027480007-a42f6ef886c3?q=80&w=1974&auto=format&fit=crop",
+    "category": "Outfits"
+  }
+]
