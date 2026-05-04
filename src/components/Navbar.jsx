@@ -92,7 +92,7 @@ const Navbar = () => {
                     href="/signin"
                     className="text-sm font-bold text-gray-700 hover:text-orange-600 transition"
                   >
-                    Login
+                    Sign in
                   </Link>
                   <Link
                     href="/signup"
