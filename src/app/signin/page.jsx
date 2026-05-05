@@ -16,7 +16,6 @@ import { GrGoogle } from "react-icons/gr";
 export default function SignInPage() {
   const onSubmit = async (e) => {
     e.preventDefault();
-
     const email = e.target.email.value;
     const password = e.target.password.value;
 
@@ -36,74 +35,95 @@ export default function SignInPage() {
   };
 
   return (
-    <Card className="border mx-auto w-125 py-10 mt-5">
-      <h1 className="text-center text-2xl font-bold">Sign In</h1>
+    /* 1. Container responsive korar jonno px-4 padding add kora hoyeche */
+    <div className="flex justify-center items-center min-h-screen px-4">
+      {/* 2. Card width: mobile-e full thakbe (max-w-md), desktop-e auto hobe */}
+      <Card className="border w-full max-w-md py-8 px-6 md:px-10 mt-5">
+        <h1 className="text-center text-2xl font-bold mb-6">Sign In</h1>
 
-      <Form className="flex w-96 mx-auto flex-col gap-4" onSubmit={onSubmit}>
-        <TextField
-          isRequired
-          name="email"
-          type="email"
-          validate={(value) => {
-            if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
-              return "Please enter a valid email address";
-            }
+        {/* 3. Form width full kore dewa hoyeche */}
+        <Form className="flex w-full flex-col gap-4" onSubmit={onSubmit}>
+          <TextField
+            isRequired
+            name="email"
+            type="email"
+            className="w-full"
+            validate={(value) => {
+              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+                return "Please enter a valid email address";
+              }
+              return null;
+            }}
+          >
+            <Label>Email</Label>
+            <Input placeholder="john@example.com" />
+            <FieldError />
+          </TextField>
 
-            return null;
-          }}
-        >
-          <Label>Email</Label>
-          <Input placeholder="john@example.com" />
-          <FieldError />
-        </TextField>
+          <TextField
+            isRequired
+            minLength={8}
+            name="password"
+            type="password"
+            className="w-full"
+            validate={(value) => {
+              if (value.length < 8) {
+                return "Password must be at least 8 characters";
+              }
+              if (!/[A-Z]/.test(value)) {
+                return "Password must contain at least one uppercase letter";
+              }
+              if (!/[0-9]/.test(value)) {
+                return "Password must contain at least one number";
+              }
+              return null;
+            }}
+          >
+            <Label>Password</Label>
+            <Input placeholder="Enter your password" />
+            <Description>
+              Must be at least 8 characters with 1 uppercase and 1 number
+            </Description>
+            <FieldError />
+          </TextField>
 
-        <TextField
-          isRequired
-          minLength={8}
-          name="password"
-          type="password"
-          validate={(value) => {
-            if (value.length < 8) {
-              return "Password must be at least 8 characters";
-            }
-            if (!/[A-Z]/.test(value)) {
-              return "Password must contain at least one uppercase letter";
-            }
-            if (!/[0-9]/.test(value)) {
-              return "Password must contain at least one number";
-            }
+          <div className="flex flex-col sm:flex-row gap-3 mt-4">
+            {/* Submit: Blue/Primary */}
+            <Button
+              type="submit"
+              color="primary"
+              className="w-full sm:flex-1 h-12 text-md font-bold shadow-lg"
+            >
+              <Check className="text-lg" />
+              Submit
+            </Button>
 
-            return null;
-          }}
-        >
-          <Label>Password</Label>
-          <Input placeholder="Enter your password" />
-          <Description>
-            Must be at least 8 characters with 1 uppercase and 1 number
-          </Description>
-          <FieldError />
-        </TextField>
+            {/* Reset: Subtle Gray/Flat */}
+            <Button
+              type="reset"
+              variant="flat"
+              className="w-full sm:flex-1 h-12 text-md font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200"
+            >
+              Reset
+            </Button>
+          </div>
+        </Form>
 
-        <div className="flex gap-2">
-          <Button type="submit">
-            <Check />
-            Submit
-          </Button>
-          <Button type="reset" variant="secondary">
-            Reset
-          </Button>
+        <div className="relative my-6">
+          <hr />
+          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-sm text-gray-500">
+            Or
+          </span>
         </div>
-      </Form>
 
-      <p className="text-center">Or</p>
-
-      <Button
-        onClick={handlGoogleSignIn}
-        variant="outline"
-        className={"w-full"}
-      >
-        <GrGoogle /> Sign In With Google
-      </Button>
-    </Card>
+        <Button
+          onClick={handlGoogleSignIn}
+          variant="outline"
+          className="w-full"
+        >
+          <GrGoogle /> Sign In With Google
+        </Button>
+      </Card>
+    </div>
   );
 }
