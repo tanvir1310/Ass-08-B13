@@ -1,94 +1,89 @@
-"use client";
-
-import { DotLottieReact } from "@lottiefiles/dotlottie-react";
 import { Button } from "@heroui/react";
-import { ShoppingBag, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { ShoppingBag, Sparkles, Sun, Timer } from "lucide-react";
 
 const Banner = () => {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-orange-50 to-white py-16 sm:py-24 lg:py-32">
-      {/* Background Decorative Elements */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30">
-        <div className="absolute top-10 left-10 w-72 h-72 bg-orange-300 rounded-full blur-[120px]"></div>
-        <div className="absolute bottom-10 right-10 w-72 h-72 bg-yellow-200 rounded-full blur-[120px]"></div>
+    <section className="relative w-full overflow-hidden rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] group">
+      {/* 🔹 Background Layer with Darker Aesthetic */}
+      <div className="absolute inset-0 z-0">
+        <div className="w-full h-[75vh] bg-[url('https://images.unsplash.com/photo-1506466010722-395aa2bef877?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center transition-transform duration-[3000ms] group-hover:scale-110" />
+        {/* Deeper Overlays for that 'Halka Dark' vibe */}
+        <div className="absolute inset-0 bg-slate-950/70" />{" "}
+        {/* Uniform dark tint */}
+        <div className="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/60 to-transparent" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Content */}
-          <div className="text-center lg:text-left space-y-8 animate-in fade-in slide-in-from-left-8 duration-1000">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-600 border border-orange-200 shadow-sm">
-              <span className="relative flex h-3 w-3">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-3 w-3 bg-orange-500"></span>
-              </span>
-              <span className="text-xs font-black uppercase tracking-wider">
-                Summer Essentials 2026
-              </span>
+      {/* 🔹 Content Area */}
+      <div className="relative z-10 h-[75vh] flex items-center px-8 md:px-20 max-w-7xl mx-auto">
+        <div className="max-w-3xl text-white space-y-8">
+          {/* Badge */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-orange-500/10 border border-orange-500/20 backdrop-blur-xl">
+            <div className="bg-orange-500 p-1 rounded-full animate-pulse">
+              <Sun size={14} className="text-white fill-current" />
             </div>
+            <span className="text-xs font-black tracking-[0.2em] uppercase text-orange-400">
+              Midnight Summer Series
+            </span>
+          </div>
 
-            <h1 className="text-5xl sm:text-7xl font-black tracking-tighter text-slate-900 leading-[1.1]">
-              Shine Bright with <br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-500">
-                SunCart Deals
+          {/* Main Headline */}
+          <div className="space-y-2">
+            <h1 className="text-6xl md:text-8xl font-black leading-none tracking-tighter uppercase">
+              Beyond the <br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-b from-orange-200 to-orange-500">
+                Horizon
               </span>
             </h1>
+          </div>
 
-            <p className="text-lg text-slate-600 font-medium max-w-xl mx-auto lg:mx-0">
-              Discover the hottest trends this season. From premium gadgets to
-              summer essentials, we bring the sun to your doorstep.
-            </p>
+          {/* Description */}
+          <p className="text-lg md:text-xl text-slate-400 max-w-lg leading-relaxed font-medium">
+            Explore premium summer essentials designed for the bold. Shop our
+            latest collection of luxury eyewear and tropical apparel.
+          </p>
 
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+          {/* 🔹 CTA Buttons */}
+          <div className="flex flex-wrap gap-5 pt-4">
+            <Link href="/products">
               <Button
                 size="lg"
-                className="bg-orange-500 text-white font-bold h-14 px-8 rounded-2xl shadow-xl shadow-orange-200 hover:bg-orange-600 hover:-translate-y-1 transition-all active:scale-95"
+                className="bg-orange-500 hover:bg-orange-600 text-white font-black h-16 px-10 rounded-2xl shadow-[0_15px_30px_-5px_rgba(249,115,22,0.4)] group/btn text-md border-none"
+                endContent={
+                  <ShoppingBag
+                    size={20}
+                    className="group-hover/btn:translate-x-1 transition-transform"
+                  />
+                }
               >
-                <ShoppingBag size={20} className="mr-2" />
                 Shop Now
               </Button>
+            </Link>
 
+            <Link href="/offers">
               <Button
                 size="lg"
                 variant="bordered"
-                className="border-2 border-slate-200 font-bold h-14 px-8 rounded-2xl hover:bg-slate-50 transition-all"
+                className="border-white/20 text-white font-bold h-16 px-10 rounded-2xl backdrop-blur-md hover:bg-white hover:text-black transition-all text-md"
+                startContent={<Sparkles size={20} />}
               >
-                Learn More
-                <ArrowRight size={18} className="ml-2" />
+                View Offers
               </Button>
-            </div>
-
-            {/* Stats */}
-            <div className="flex items-center justify-center lg:justify-start gap-8 pt-4 border-t border-slate-100">
-              <div>
-                <p className="text-2xl font-black text-slate-900">50k+</p>
-                <p className="text-xs font-bold text-slate-500 uppercase">
-                  Happy Users
-                </p>
-              </div>
-              <div className="w-px h-10 bg-slate-200"></div>
-              <div>
-                <p className="text-2xl font-black text-slate-900">4.9/5</p>
-                <p className="text-xs font-bold text-slate-500 uppercase">
-                  Ratings
-                </p>
-              </div>
-            </div>
+            </Link>
           </div>
+        </div>
+      </div>
 
-          {/* Right Animation (Lottie) */}
-          <div className="relative flex justify-center items-center animate-in zoom-in duration-1000">
-            <div className="w-full max-w-[500px] h-full relative z-10">
-              <DotLottieReact
-                src="https://lottie.host/8e317075-87cc-44df-91bd-386008892305/D0D7R0rVfX.lottie" // এনিমেটেড শপিং কার্ট/সান থিম
-                loop
-                autoplay
-              />
-            </div>
-
-            {/* Background Circle Decor */}
-            <div className="absolute w-[80%] h-[80%] border-2 border-dashed border-orange-200 rounded-full animate-[spin_20s_linear_infinite]"></div>
-          </div>
+      {/* 🔹 Floating Dark Promo Card */}
+      <div className="absolute bottom-12 right-12 hidden lg:flex items-center gap-5 bg-black/40 backdrop-blur-3xl p-6 rounded-[2rem] border border-white/5 shadow-2xl transition-all duration-500 hover:border-orange-500/30 hover:-translate-y-2">
+        <div className="h-14 w-14 bg-orange-600/20 rounded-2xl flex items-center justify-center border border-orange-500/30">
+          <Timer className="text-orange-500" size={32} />
+        </div>
+        <div>
+          <p className="text-white font-black text-2xl leading-none">50% OFF</p>
+          <p className="text-slate-500 text-xs font-bold uppercase tracking-widest mt-1">
+            Limited Night Sale
+          </p>
         </div>
       </div>
     </section>
