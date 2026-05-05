@@ -5,15 +5,13 @@ import Image from "next/image";
 import Link from "next/link";
 
 const PhotoCard = ({ photo }) => {
-  // 1. ডাটা চেক: যদি photo না থাকে তবে কিছুই দেখাবে না
+  //
   if (!photo) return null;
 
   return (
     <Card className="border-none bg-white/80 backdrop-blur-md shadow-sm rounded-3xl p-4 hover:shadow-xl transition-all duration-300 group">
-      {/* Image Section */}
       <div className="relative w-full aspect-square overflow-hidden rounded-2xl bg-gray-100">
         <Image
-          // 2. সঠিক কী (key) ব্যবহার: photo.image অথবা photo.imageUrl চেক করুন
           src={photo.image || photo.imageUrl || "/placeholder.jpg"}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
@@ -57,7 +55,6 @@ const PhotoCard = ({ photo }) => {
         </div>
       </div>
 
-      {/* 3. লিঙ্কে ডাবল স্ল্যাশ '//' এর বদলে সঠিক পাথ দিন */}
       <Link href={`/all-photo/${photo.id}`} className="w-full block">
         <Button className="w-full bg-slate-950 text-white font-bold rounded-xl py-6 hover:bg-orange-600 transition-colors">
           View Details
