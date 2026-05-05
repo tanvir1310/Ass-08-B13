@@ -3,16 +3,17 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, Sun, LogOut, User } from "lucide-react";
-// Import your auth client (BetterAuth)
-// import { authClient } from "@/lib/auth-client";
+import { Menu, X, Sun, LogOut } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button } from "@heroui/react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  // Fake session state for design (Replace with your BetterAuth logic)
-  const session = null; // authClient.useSession().data
+  // BetterAuth Session Logic
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
 
   const navLinks = [
     { name: "Home", href: "/" },
@@ -21,8 +22,8 @@ const Navbar = () => {
   ];
 
   const handleLogout = async () => {
-    // await authClient.signOut();
-    console.log("Logged out");
+    await authClient.signOut();
+    setIsOpen(false);
   };
 
   return (
@@ -40,7 +41,7 @@ const Navbar = () => {
           </Link>
 
           {/* 🔹 Desktop Menu */}
-          <ul className="hidden md:flex items-center gap-8 text-[15px] font-semibold">
+          <ul className="hidden md:flex items-center gap-8 text-[15px] font-bold">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -60,31 +61,40 @@ const Navbar = () => {
           {/* 🔹 Auth Section */}
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center gap-3">
-              {session ? (
+              {user ? (
                 <div className="flex items-center gap-4">
-                  {/* User Avatar */}
+                  {/* User Profile */}
                   <Link
                     href="/profile"
                     className="flex items-center gap-2 group"
                   >
-                    <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-orange-200 group-hover:border-orange-500 transition-all">
-                      <img
-                        src={
-                          session.user.image ||
-                          "https://ui-avatars.com/api/?name=User"
-                        }
-                        alt="Profile"
-                        className="w-full h-full object-cover"
+                    <Avatar size="sm">
+                      <Avatar.Image
+                        alt="John Doe"
+                        src={user?.image}
+                        referrerPolicy="no-referrer"
                       />
+                      <Avatar.Fallback>{user?.name.charAt(0)}</Avatar.Fallback>
+                    </Avatar>
+                    <div className="text-left">
+                      <p className="text-xs font-black text-gray-900 leading-none">
+                        {user?.name}
+                      </p>
+                      <p className="text-[10px] text-gray-500 font-bold">
+                        Customer
+                      </p>
                     </div>
                   </Link>
-                  <button
+
+                  <Button
                     onClick={handleLogout}
-                    className="flex items-center gap-1 text-sm font-medium text-red-500 hover:bg-red-50 px-3 py-2 rounded-lg transition"
+                    variant="danger"
+                    size="sm"
+                    className="font-bold"
+                    startContent={<LogOut size={16} />}
                   >
-                    <LogOut size={18} />
-                    Sign in
-                  </button>
+                    Logout
+                  </Button>
                 </div>
               ) : (
                 <>
@@ -94,11 +104,10 @@ const Navbar = () => {
                   >
                     Sign in
                   </Link>
-                  <Link
-                    href="/signup"
-                    className="text-sm bg-orange-500 text-white px-6 py-2.5 rounded-full font-bold hover:bg-orange-600 transition shadow-md shadow-orange-200 active:scale-95"
-                  >
-                    Sign up
+                  <Link href="/signup">
+                    <Button className="bg-orange-500 text-white font-bold rounded-full px-6 shadow-md shadow-orange-100 hover:bg-orange-600">
+                      Sign up
+                    </Button>
                   </Link>
                 </>
               )}
@@ -116,7 +125,7 @@ const Navbar = () => {
 
         {/* 🔹 Mobile Menu Dropdown */}
         {isOpen && (
-          <div className="md:hidden border-t border-orange-50 py-6 space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
+          <div className="md:hidden border-t border-orange-50 py-6 space-y-4">
             <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <Link
@@ -137,40 +146,50 @@ const Navbar = () => {
             <hr className="border-orange-50 mx-4" />
 
             <div className="px-4">
-              {session ? (
+              {user ? (
                 <div className="space-y-3">
-                  <div className="flex items-center gap-3 p-2 bg-gray-50 rounded-lg">
-                    <img
-                      src={session.user.image}
-                      className="w-10 h-10 rounded-full"
-                      alt="User"
+                  <div className="flex items-center gap-3 p-3 bg-orange-50 rounded-xl border border-orange-100">
+                    <Avatar
+                      size="md"
+                      src={
+                        user?.image ||
+                        "https://ui-avatars.com/api/?name=" + user?.name
+                      }
                     />
-                    <span className="font-bold text-gray-700">
-                      {session.user.name}
+                    <span className="font-bold text-gray-800">
+                      {user?.name}
                     </span>
                   </div>
-                  <button
+                  <Button
                     onClick={handleLogout}
-                    className="w-full flex items-center justify-center gap-2 py-3 bg-red-50 text-red-600 rounded-xl font-bold"
+                    fullWidth
+                    color="danger"
+                    variant="flat"
+                    className="font-bold py-6 rounded-xl"
+                    startContent={<LogOut size={20} />}
                   >
-                    <LogOut size={20} /> Logout
-                  </button>
+                    Logout
+                  </Button>
                 </div>
               ) : (
                 <div className="flex flex-col gap-3">
-                  <Link
-                    href="/signin"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 py-3 border-2 border-orange-500 text-orange-600 rounded-xl font-bold"
-                  >
-                    Login
+                  <Link href="/signin" onClick={() => setIsOpen(false)}>
+                    <Button
+                      fullWidth
+                      variant="bordered"
+                      color="warning"
+                      className="font-bold py-6 border-2"
+                    >
+                      Login
+                    </Button>
                   </Link>
-                  <Link
-                    href="/signup"
-                    onClick={() => setIsOpen(false)}
-                    className="flex items-center justify-center gap-2 py-3 bg-orange-500 text-white rounded-xl font-bold shadow-lg shadow-orange-200"
-                  >
-                    Register Now
+                  <Link href="/signup" onClick={() => setIsOpen(false)}>
+                    <Button
+                      fullWidth
+                      className="bg-orange-500 text-white font-bold py-6 shadow-lg shadow-orange-200"
+                    >
+                      Register Now
+                    </Button>
                   </Link>
                 </div>
               )}
